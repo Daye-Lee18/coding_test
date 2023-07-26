@@ -40,12 +40,12 @@ class Solution:
             res = ""
 
             for mid in range(len(s)): 
-                # s가 홀수인 경우 
+                # candidate palindrome이 홀수인 경우 
                 l = r = mid 
                 #res, max_len은 for loop을 돌면서 find_help func에 계속 들어가기 때문에 이름이 같아야함. (res, max_len)
                 res, max_len = self.find_help(l, r, s, res, max_len)
 
-                # s 가 짝수인 경우: mid부터 for이 시작하니까 l이 mid가 되어야 함. 
+                # candidate palindrome이 짝수인 경우: mid부터 for이 시작하니까 l이 mid가 되어야 함. 
                 l, r = mid, mid+1
                 res, max_len = self.find_help(l, r, s, res, max_len)
             return res

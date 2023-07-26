@@ -7,14 +7,19 @@ class Solution:
         
         for l_idx, char in enumerate(s):
             r_idx = l_idx
+            # 중복 (repeating)이라는 단어가 나오면 set을 생각해라 
             charSET= set()
             
             # charSET 에 현재 CHAR가 없을 때 NO repeating임 
             # 현재 idx에서 최대 길이의 without repeating 을 찾은 다음에 while 문 밖에서 if문으로 max_len을 update 해줌 
             # while안에서 if를 넣으면 너무 조잡하게 계산됨 
+            # 현재 char가 charSET에 없을때만 WHILE문이 진행되므로 아래 방법과는 다르게 더 빠르게 체크할 수 있다. 아래 방법은 언제나  for 문 두개를 돌면서 모든 substring에 대해 check함으로 느림. 
             while r_idx < len_s and s[r_idx] not in charSET:
                 charSET.add(s[r_idx])
                 r_idx += 1 
+            # while 문을 통과했으면 r_idx 가 len_s거나 아니면 s[r_idx] 가 charSET에 없거나 
+            # s[r_idx]가 charSET에 없으면 현재 LEN는 r_idx - l_idx + 1가 아닌 r_idx - l_idx임 
+            # 길이를 파악할 때 언제 while 문 밖으로 나오는지 확인을 잘 해야할 것 같음
             if max_len < (r_idx - l_idx):
                 max_len = r_idx - l_idx
         return max_len

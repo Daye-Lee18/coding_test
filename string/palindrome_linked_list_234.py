@@ -53,19 +53,34 @@ class Solution:
 
 '''
 
-class solution:
-    def isPalindrome_2(self, head: ListNode) -> bool:
-        rev = None
-        slow = fast = head 
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        
+        slow  = fast = head 
+        rev = None 
+        
+        # reverse linked list with half the size of the original string 
         while fast and fast.next:
+            # if you write the second line before the first line, it would throw an error but I don't know why 
             fast = fast.next.next 
-            rev, rev.next, slow = slow, rev, slow.next
-        # 위의 while문에서 fast는 남아있고 fast.next가 없는 경우 = linked list의 길이가 홀수임
-        # slow와 rev를 비교해야하므로 slow한칸 더 가야함.
+            rev, rev.next, slow = slow, rev, slow.next 
+            
+        
+        # if fast exists and fast.next does not exist, it means that the length of the original string is even 
+        # when the string length is even, the r_idx (which is mid) needs to be right next to the l_idx pointer (in this case, rev pointer)
         if fast:
             slow = slow.next 
-        # palindrome 판별 
-        while rev and rev.val == slow.val :
-            slow, rev = slow.next , rev.next 
-        # rev가 linked list의 맨 처음으로 간 경우는 none일것이므로 palindrome임
-        return not rev 
+        # if fast.next is not None, it means that the length of the original string is odd because fast pointer gets bigger by twice 
+        # You don't have to update the fast pointer becuase it ain't be used for the future 
+        # if fast.next:
+        #     fast = fast.next 
+        
+        # chack the reverse linked-list with a linked-list that starts from slow pointer 
+        # head<---------rev, start -------> fast 
+        while rev and slow:
+            if rev.val == slow.val:
+                rev = rev.next 
+                slow = slow.next 
+            else:
+                return False 
+        return not rev
