@@ -56,7 +56,7 @@ class Solution:
             # 중간에서 시작해서 옆으로 커지면서 가장 큰 palindrome을 찾는다. 그러면 max len을 가외에서 찾아서 들어오는 것보다 확실하고 빠르게 찾을 수 있음. 
             if max_len < (r-l+1):
                 res = s[l:r+1]
-                max_len = r-1+1
+                max_len = r-l+1
             l -= 1 
             r += 1 
         return (res, max_len)

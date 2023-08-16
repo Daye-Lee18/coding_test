@@ -1,6 +1,7 @@
 # dfs method 
 def dfs(graph, v, visited):
     visited[v] = True 
+    # you can do your own thing instead of print 
     print(v, end= ' ')
 
     for i in graph[v]:

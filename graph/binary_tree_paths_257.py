@@ -39,5 +39,45 @@ class Solution:
 
 
 '''
-dfs, backtrackgng으로 구현 
+dfs, backtracking으로 구현 
+
+   1
+  / \
+  2  3 
+   \
+    5
 '''
+
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+
+        def dfs_help(cur, visited, path, paths):
+            if cur != None:
+                visited[cur] = True 
+                
+                # your algorithm 
+                path.append(str(cur.val))
+                # child node 
+                if cur.left == cur.right == None: 
+                    paths.append("->".join(path)) 
+                else:    
+                    # neighbors 
+                    # if visited[cur.left] == False: 
+                    if cur.left not in visited: 
+                        dfs_help(cur.left, visited, path, paths)
+                    if cur.right not in visited:
+                        dfs_help(cur.right, visited, path, paths) 
+                # backtracking 
+                # if you don't do backtracking, you would get the answer of ["1->2->5","1->2->5->3"] which 2-> 5-> is incorrect in 2nd path answer 
+                # In this case, if you hit 5 you will hit the below code line. and cur would be 5 and then 2 and then 1 
+                path.pop()
+                visited[cur] = False 
+
+        # INIT 
+        path = []
+        paths = []
+        visited=dict() 
+
+        dfs_help(root, visited, path, paths) 
+
+        return paths
