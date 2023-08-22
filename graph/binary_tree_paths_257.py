@@ -71,7 +71,7 @@ class Solution:
                 # if you don't do backtracking, you would get the answer of ["1->2->5","1->2->5->3"] which 2-> 5-> is incorrect in 2nd path answer 
                 # In this case, if you hit 5 you will hit the below code line. and cur would be 5 and then 2 and then 1 
                 path.pop()
-                visited[cur] = False 
+                visited[cur] = False # 사실 여기서 이 부분은 없어도 알고리즘이 돌아가고 path.pop()을 해주는 것이 backtracking에서 핵심이다. 
 
         # INIT 
         path = []

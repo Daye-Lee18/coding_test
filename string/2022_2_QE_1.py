@@ -161,5 +161,6 @@ def permutations(iterable, r=None):
 
 if __name__ == '__main__':
     s = 'abc'
-    for _ in str_perm(s):
-        print(_)
+    # for _ in str_perm(s):
+    #     print(_)
+    print(str_perm(s))

@@ -92,13 +92,10 @@ def paths(G,s,t):
 
     return answer 
 
-    
-
-
 
 
 if __name__ == '__main__':
     a, b, c, d = GNode('a'), GNode('b'), GNode('c'), GNode('d')
     G = dict() 
     G[a], G[b], G[c], G[d] = [b, c], [d], [], [c]
-    paths(G, a, c)
+    print(paths(G, a, c))

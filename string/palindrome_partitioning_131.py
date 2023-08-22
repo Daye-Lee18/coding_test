@@ -30,6 +30,14 @@ class Solution:
                 start += 1
                 end -= 1
             return True
+
+        # def is_palindrome(s:str, start:int, e:int) -> bool:
+
+        #     while start <= e and s[start] == s[e] :
+        #         start += 1 
+        #         e -= 1 
+            
+        #     return True if start > e else False
         
         partitionHelper(0)
         return res 

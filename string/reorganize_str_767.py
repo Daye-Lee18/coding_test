@@ -9,10 +9,15 @@ class Solution:
         heap = []
         # store the letter and frequence as pair based on its frequence in max heap
         # key = the letter and value = frequence 
-        for key, value in collections.Counter(s).iterms():
+        # counter = dictionary form 
+        # https://www.daleseo.com/python-heapq/ 
+        # min heap이 기본이라, max heap을 해주려면 tuple을 원소로 추가하거나 삭제하면, 튜플내에서 맨 앞에 있는 값을 기준으로 min heap이 구성되는 원리를 이용한다. 
+        # 인덱스 0은 우선순위이므로 나중에 값을 가져올 때는 index 1에 있는 값만 가져오면 된다. 
+        for key, value in collections.Counter(s).items():
            heapq.heappush(heap, [-value, key])
         
         # res will be pre + curr 
+        # if s = "aab", res = 'a' + 'b' + 
         res = ""
         pre = heapq.heappop(heap)
         res += pre[1]
