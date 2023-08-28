@@ -1,5 +1,9 @@
 import sys 
 
+
+# class member function 
+# insert, delete, heap sort, heapify 
+
 class MaxHeap:
 
     def __init__(self, maxsize):

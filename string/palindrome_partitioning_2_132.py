@@ -18,6 +18,7 @@ class Solution:
             mini = end 
             for start in range(end+1):
                 # check if s[start:end+1] is a palindrome 
+                # start + 1 > end -1 인 경우에는 start == end 인 경우 즉, substring이 character인 경우에는 무조건 palindrome이다. 혹은, table[start+1][end-1]
                 if s[start] == s[end] and ( start + 1 > end -1 or table[start+1][end-1]): # table[start+1][end-1] = check if the previous string is palindrome 
                     table[start][end] = True 
                     mini = 0 if start == 0 else min(mini, cut[start-1] + 1)
