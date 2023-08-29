@@ -20,7 +20,7 @@ void Maxheap::maxHeapify(int pos, int heapSize){
         swap(Heap[pos], Heap[largest]);
  
         // Recursively heapify the affected sub-tree
-        maxHeapify(largest, heapSize);
+        maxHeapify(largest, heapSize -1);
     }
 }
 
