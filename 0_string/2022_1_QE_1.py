@@ -2,7 +2,12 @@
 - implement max_palindrome(s) 
 - returns a list of substrings of s that are maximal palindromes 
 - the list contains palidromes that are not a substring of another palindrome
+- ex) 
+For s = "kabccbadzdefgfeda",
+max palindromes(s) should return ["k", "abccba", "dzd", "defgfed"]
 
+For s = "kabccba dzabccbaza",
+max palindromes(s) should return ["k", " ", "d", "zabccbaz", "aza"]
 '''
 
 # problem (a) 
@@ -26,6 +31,8 @@ def palindrome(s:str) -> bool:
          return True 
     return False 
 
+
+
 # problem (b) 
 # a function substring(s, t) that checks if the string t is a substring(s,t) 
 
@@ -41,6 +48,9 @@ def substring(s:str,t:str) -> bool:
     else:
         return False 
 
+
+
+
 # problem (c) 
 # funtion max_palindromes(s) that uses palidrome(s) and substring(s,t) 
 def max_palindrome(s:str) -> list:
@@ -53,6 +63,9 @@ def max_palindrome(s:str) -> list:
             if palindrome(candidate_s):
                 temp.append(candidate_s) 
     
+    for _ in temp:
+        print(temp)
+
     # find whether there are some substring or the same palindrome
     result = set(temp) 
     result = list(result)
@@ -79,6 +92,7 @@ def max_palindrome(s:str) -> list:
     
     def remove_redundant_substring(string_list):
         result = []
+        ### important to sort first #### 
         string_list.sort(key=len) # sort the strings by length to process short substrings first 
     
         for i, s in enumerate(string_list):
@@ -94,6 +108,8 @@ def max_palindrome(s:str) -> list:
     ans = remove_redundant_substring(result)
 
     return ans
+
+
             
 if __name__ == '__main__':
     # s = "kabccbadzdefgfeda"

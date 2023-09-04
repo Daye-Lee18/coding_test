@@ -24,3 +24,39 @@ graph = [
 visited = [False] * 9
 
 dfs(graph, 1, visited)
+
+'''return-based & input-based solution'''
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None 
+
+# return  based 
+def preorderTraversal(root:TreeNode) -> list:
+    # base case 
+    if not root:
+        return []
+            # visit function + recursive call + recursive call 
+    return [root.val] + \
+        preorderTraversal(root.left) +\
+    preorderTraversal(root.right)
+
+# input based 
+def preorderTraversal(root:TreeNode) -> list:
+
+    def helper(root:TreeNode, result:list):
+        #base case 
+        if not root:
+            return
+
+        result.append(root.val) # visit function 
+        helper(root.left, result) # recursive call 
+        helper(root.right, result)
+    
+    ans = []
+    helper(root, ans)
+
+    return ans 
