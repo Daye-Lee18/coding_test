@@ -61,12 +61,16 @@ bool substring(const string& s, const string& t) {
 
 vector<string> max_palindrome(const string& s) {
     // find all palindromes 
-    //vector<string> temp;
-    unordered_set<string> temp;
-    for (int i = 0; i < s.size(); i++){
-        for (int j = i+1; j < s.size(); j++){
-            string candidate = s.substr(i,j);
+    // vector<string> temp;
+    unordered_set<string> temp; // insert, begin, end, empty, size, erase(iterator), extract(element)
+    int len_s = s.size();
+    for (int i = 0; i < len_s; i++){
+        // for (int j = i+1; j <= s.size() +1; j++){
+        for (int j = 0; j<=s.size()+1; j++){ // j는 i+1이 아니라 0부터여야함. 왜냐면 substring의 size를 나타내기 때문 
+            string candidate = s.substr(i,j-1);
+            // cout << '"' << candidate << '"' << " ";
             if (is_palindrome(candidate)){
+                
                 temp.insert(candidate);
             }
         }
@@ -111,7 +115,7 @@ int main() {
     vector<string> result = max_palindrome(s);
 
     for (const string& palindrome : result) {
-        cout << palindrome << " "; // ["k", " ", "d", "zabccbaz", "aza"]
+        cout <<'"' << palindrome << '"' << " "; // ["k", " ", "d", "zabccbaz", "aza"]
     }
 
     return 0;

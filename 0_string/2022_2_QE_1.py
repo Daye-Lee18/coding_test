@@ -97,6 +97,7 @@ def permute(a, l, r, permList):
             a[l], a[i] = a[i], a[l]
             # based on this swapped state, do the same thing with a[l+1]
             permute(a, l+1, r, permList)
+            #backtracing 
             a[l] , a[i] = a[i], a[l]
 
 def str_perm(str):

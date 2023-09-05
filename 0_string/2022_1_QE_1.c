@@ -30,10 +30,6 @@ bool is_palindrome(const char* s) {
 //     return 0;
 // }
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-
 bool substring(const char* s, const char* t) {
     int len_s = strlen(s);
     int len_t = strlen(t);
@@ -72,7 +68,7 @@ char** max_palindrome(const char* s, int* count) {
     // Find all palindromes
     for (int i = 0; i < strlen(s); ++i) {
         for (int j = i; j <= strlen(s); ++j) {
-            char* candidate_s = strndup(s + i, j - i);
+            char* candidate_s = strndup(s + i, j - i); // strndup(src, len) 
             if (is_palindrome(candidate_s)) {
                 if (max_count >= capacity) {
                     capacity *= 2;

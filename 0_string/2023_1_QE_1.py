@@ -19,6 +19,7 @@ For example,
 '''
 
 # 문제에서 two adjacent characters는 string안에서 "index" 가 -1, +1 로 바로 옆이 아닌 것을 말하는 것 같다. 
+# adjacent list 생성 필요 할 듯 
 def foo(s:str) -> str:
     if len(s) <= 4:
         return ""
@@ -62,46 +63,9 @@ For example,
 - when the string s is "abcdcef", bar(s) returns "cafbed" 
 
 '''
+# leetcode reorganize_str_767 문제와 비슷한 듯 다르다. (결론, 다르다)
 
-from collections import deque 
-def bar(s):
-    global ans
-    ans = ''
-    adj = {}
-    
-    # if s = "aabdb"
-    # adj is {'a': {'a', 'b'}, 'b': {'a', 'd'}, 'd': {'b'}}
-    for ix, char in enumerate(s):
-        if char not in adj:
-            adj[char] = set([])
-        if ix > 0:
-            adj[char] = adj[char].union(set([s[ix - 1]]))
-        if ix < len(s) - 1:
-            adj[char] = adj[char].union(set([s[ix + 1]]))
-    
-    # if s = "aabdb"
-    # {'a': 1, 'b': 1, 'd': 1}
-    q = deque()
-    cnt = {}
-    for i in s:
-        if i in cnt:
-            continue
-        else:
-            cnt[i] = 1
-            q.append(i)
-            
-    result = ""
-    result += q.popleft()
 
-    # while을 몇 번 돌려도 계속 adjacent한 char라서 q가 계속 남아있는 경우도 생각해야 한다. 
-    while q:
-        curChar = q.popleft()
-        if curChar not in adj[result[-1]]:
-            result += curChar 
-        else:
-            q.append(curChar)
-    
-    return result
 
 # namju solution 
 def bar(s: str) -> str: 
@@ -177,3 +141,43 @@ def bar(s):
     # print(''.join(ans))
     ret = ''.join(ans)
     return ret
+
+# from collections import deque 
+# def bar(s):
+#     global ans
+#     ans = ''
+#     adj = {}
+    
+#     # if s = "aabdb"
+#     # adj is {'a': {'a', 'b'}, 'b': {'a', 'd'}, 'd': {'b'}}
+#     for ix, char in enumerate(s):
+#         if char not in adj:
+#             adj[char] = set([])
+#         if ix > 0:
+#             adj[char] = adj[char].union(set([s[ix - 1]]))
+#         if ix < len(s) - 1:
+#             adj[char] = adj[char].union(set([s[ix + 1]]))
+    
+#     # if s = "aabdb"
+#     # {'a': 1, 'b': 1, 'd': 1}
+#     q = deque()
+#     cnt = {}
+#     for i in s:
+#         if i in cnt:
+#             continue
+#         else:
+#             cnt[i] = 1
+#             q.append(i)
+            
+#     result = ""
+#     result += q.popleft()
+
+#     # while을 몇 번 돌려도 계속 adjacent한 char라서 q가 계속 남아있는 경우도 생각해야 한다. 
+#     while q:
+#         curChar = q.popleft()
+#         if curChar not in adj[result[-1]]:
+#             result += curChar 
+#         else:
+#             q.append(curChar)
+    
+#     return result

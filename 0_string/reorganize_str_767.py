@@ -35,3 +35,10 @@ class Solution:
             pre = curr 
 
         return "" if len(res) != len(s) else res 
+    
+
+if __name__ == '__main__':
+    s = "aaabbcd"
+    x = Solution()
+    print(x.reorganizeString(s)) # babacd 
+    
