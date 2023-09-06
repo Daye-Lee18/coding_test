@@ -51,9 +51,9 @@ void dfs(const unordered_map<char, unordered_set<char>>& adj, unordered_map<char
     }
 
     for (auto cur: Cnt){
-        auto it = adj.find(buffer[-1]); // set을 가리키는 iterator 
+        auto it = adj.find(buffer.back()); // set을 가리키는 iterator 
         auto cur_set = *it;
-        if (Cnt[cur.first] > 0 && cur_set.second.find(cur.first) == cur_set->end()){
+        if (Cnt[cur.first] > 0 && cur_set.second.find(cur.first) == cur_set.second.end()){
             buffer += cur.first ;
             Cnt[cur.first] -= 1;
             max_size += 1;
