@@ -30,23 +30,23 @@ def foo(s:str) -> str:
         result += s[i]
     return result
 
-def foo(s: str) -> str:
-    if len(s) <= 4:
-        return ""
+# def foo(s: str) -> str:
+#     if len(s) <= 4:
+#         return ""
     
-    even_list = []
-    odd_list = []
+#     even_list = []
+#     odd_list = []
     
-    for idx in range(len(s)):
-        if idx // 2 == 0:
-            even_list.append(idx)
-        else:
-            odd_list.append(idx) 
+#     for idx in range(len(s)):
+#         if idx // 2 == 0:
+#             even_list.append(idx)
+#         else:
+#             odd_list.append(idx) 
     
-    result = ''.join(s[even_list])
-    result = result + ''.join(s[odd_list])
+#     result = ''.join(s[even_list])
+#     result = result + ''.join(s[odd_list])
 
-    return result  
+#     return result  
 
 '''
 
@@ -68,33 +68,34 @@ For example,
 
 
 # namju solution 
-def bar(s: str) -> str: 
-    if len(s) <= 4:
-        return ""
+# def bar(s: str) -> str: 
+#     if len(s) <= 4:
+#         return ""
     
-    # when a character appears in s, t should contain it only once 
-    # 한 번만 하도록 dict에 채워줌 
-    char_list = []
-    idx_list = []
-    for idx, char in enumerate(s): 
-        if char not in  char_list:
-            char_list.append(char)
-            idx_list.append(idx) 
-        else:
-            continue 
+#     # when a character appears in s, t should contain it only once 
+#     # 한 번만 하도록 dict에 채워줌 
+#     char_list = []
+#     idx_list = []
+#     for idx, char in enumerate(s): 
+#         if char not in  char_list:
+#             char_list.append(char)
+#             idx_list.append(idx) 
+#         else:
+#             continue 
     
-    # 퐁당퐁당 
-    even_result = ''
-    odd_result = ''
-    cur_str = ''.join(char_list)
-    for char, idx in zip(char_list, idx_list):
-        if idx // 2 == 0:
-            even_result += char 
-        else:
-            odd_result += char   
-    return even_result + odd_result 
+#     # 퐁당퐁당 
+#     even_result = ''
+#     odd_result = ''
+#     cur_str = ''.join(char_list)
+#     for char, idx in zip(char_list, idx_list):
+#         if idx // 2 == 0:
+#             even_result += char 
+#         else:
+#             odd_result += char   
+#     return even_result + odd_result 
 
 
+# adj, 원소당 1씩 저장하는 dictionary 생성, func를 만들어 recursive하게 방문하여 buf에 temp result저장하고 buf길이가 cnt의 길이와 동일하면 break 
 def bar(s):
     global ans
     ans = ''
@@ -120,7 +121,8 @@ def bar(s):
             cnt[i] = 1
 
     #dfs 
-    def func(ori:str, cnt:dict, used:int, buf:list):
+    # cnt: 원소당 1의 value를 가진 dict, used : count에서 총 사용한 개수, buf : 최종 값을 저장해놓는 리스트 
+    def func(cnt:dict, used:int, buf:list):
         global ans
         # if used >= len(ori):
         if used >= len(cnt):
@@ -135,9 +137,9 @@ def bar(s):
                     if len(buf) <= 0 or i not in adj[buf[-1]]:
                         cnt_new = cnt.copy()
                         cnt_new[i] = cnt_new[i] - 1
-                        func(ori, cnt_new, used + 1, buf + [i])
+                        func(cnt_new, used + 1, buf + [i])
 
-    func(s, cnt, 0, [])
+    func(cnt, 0, [])
     # print(''.join(ans))
     ret = ''.join(ans)
     return ret
@@ -181,3 +183,10 @@ def bar(s):
 #             q.append(curChar)
     
 #     return result
+
+if __name__ == '__main__':
+    s = "abcdcef"
+    # for _ in str_perm(s):
+    #     print(_)
+    print(foo(s)) 
+    print(bar(s))
