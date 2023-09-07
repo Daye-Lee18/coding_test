@@ -1,4 +1,37 @@
 
+'''
+input = string s 
+output = the length of longest palindrome 
+
+ex) 
+
+s = 'abcccdd'
+output = 7 <- 'dccaccd' 
+
+s = 'a'
+output = 1 <- 'a' 
+
+'''
+
+from collections import Counter 
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        cnt = Counter(s) 
+
+        max_len = 0 
+        is_odd = False 
+        print(cnt)
+        for key, value in cnt.items():
+            max_len += (value // 2) * 2 
+            cnt[key] = value % 2 
+
+            if is_odd == False and max_len % 2 == 0 and cnt[key] == 1 : # value값은 위에서 update될 수도 있어서 cnt[key]로 condition 비교해야함 
+                max_len += 1 
+                is_odd = True # 딱 한번만 진행 
+        return max_len
+        
+
 class Solution:
     def longestPalindrome(self, s: str) -> int:
         
@@ -37,5 +70,3 @@ class Solution:
                     break 
 
         return max_len 
-
-            

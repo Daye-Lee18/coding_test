@@ -71,7 +71,7 @@ string bar(const string& s){
 
     int count = 0;
     for (char cur: s){
-        // s = '_aaaabded_' 일때 _제외한 경우에서, 
+        
         if (count > 0 && count <= s.size() -2){
             unordered_set<char> cur_set;
             cur_set.insert(s[count-1]);

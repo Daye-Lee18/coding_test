@@ -1,7 +1,13 @@
 # https://takeuforward.org/data-structure/palindrome-partitioning/
 
 '''
- It's also backtracking problem 
+It's also backtracking problem 
+
+
+input : s 
+목적: partition s such that every substring of the partition is a palidrome 
+return: all possible palindrome partitioning of s 
+
 ''' 
 
 from typing import List 

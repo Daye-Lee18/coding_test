@@ -59,3 +59,54 @@ def fib(n):
 print(fib(100))
 
 ```
+
+### Input-based & return-based recursion 
+
+- 문제: 
+  - binary tree가 있을 때 
+  - input : binary tree의 root 노드 
+  - return: pre-order depth-first traversal 수행 후, 방문한 순서대로 노드의 val을 나열한 list 
+    - root 가 없는 경우는 empty list return 
+
+
+#### Input-based recursion 
+: recursive하게 불리는 function parameter (input)를 최종 return 값으로 함 
+
+```python
+
+def preorderTraversal(root: TreeNode) -> List[int]:
+
+  def helper(cur: TreeNode, output: list):
+    if cur == None: # base case 
+      return 
+
+    output.append(cur.val) # visit function 
+
+    # recursive call from left to right 
+    helper(cur.left, output)
+    helper(cur.right, output) 
+
+  if root == None:
+    return []
+  
+  output = [] 
+  helper(root, output)
+
+  return output 
+
+
+```
+
+#### Return-based recursion 
+: recursive하게 return 값에 add하여 최종 return 값을 정함 
+
+```python 
+
+def preorderTraversal(root: TreeNode) -> List[int]:
+  if root == None:
+    return []
+
+  return [root.val] + preorderTraversal(cur.left) + preorderTraversal(cur.right) 
+
+
+```

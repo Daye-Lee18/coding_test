@@ -1,34 +1,15 @@
 
-# 이 solution은 s가 길때 time limit이 뜸 
-class Solution:
-    def longestPalindrome(self, s: str) -> str:
-        if len(s) == 0 or len(s) == 1:
-            return s 
-        else:
-            # 처음과 끝 index 정하기 
-            # l은 0q부터, r은 1부터 시작 
-            max_len = 0
-            for l in range(0, len(s)):
-                for r in range(1, len(s)):
-                    # 해당 처음과 끝이 palindrome인지 파악하기 
-                    new_s = s[l:r]
-                    if self.is_palindrome(new_s):
-                        # 길이 비교 해서 max_length와 max_result 에 저장하기
-                        if len(new_s) > max_len:
-                            max_len = len(new_s) 
-                            result = new_s
-        return result
-                    
-    
-    def is_palindrome(self, s: str) -> bool:
-        for i in range(len(s)):
-            if s[i] == s[-(i+1)]:
-                continue
-            else:
-                return False 
-        return True 
+'''
+input = string s 
+output : longest palindromic "substring" in s 
 
-    
+ex) 
+
+s = "babad" 
+output: "bab" or "aba" 
+
+'''
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         
@@ -60,3 +41,35 @@ class Solution:
             l -= 1 
             r += 1 
         return (res, max_len)
+
+
+# 이 solution은 s가 길때 time limit이 뜸 
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s) == 0 or len(s) == 1:
+            return s 
+        else:
+            # 처음과 끝 index 정하기 
+            # l은 0q부터, r은 1부터 시작 
+            max_len = 0
+            for l in range(0, len(s)):
+                for r in range(l+1, len(s)+1):
+                    # 해당 처음과 끝이 palindrome인지 파악하기 
+                    new_s = s[l:r]
+                    if self.is_palindrome(new_s):
+                        # 길이 비교 해서 max_length와 max_result 에 저장하기
+                        if len(new_s) > max_len:
+                            max_len = len(new_s) 
+                            result = new_s
+        return result
+                    
+    
+    def is_palindrome(self, s: str) -> bool:
+        for i in range(len(s)):
+            if s[i] == s[-(i+1)]:
+                continue
+            else:
+                return False 
+        return True 
+
+    
