@@ -72,7 +72,7 @@ string bar(const string& s) {
     //     cout << '\n';
     // }
 
-    // {'element': 1} dictionary 
+    // {'element': 1} dictionary  
     unordered_map<char, int> cnt;
 
     // Count occurrences of characters
