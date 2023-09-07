@@ -8,6 +8,12 @@ input : s
 목적: partition s such that every substring of the partition is a palidrome 
 return: all possible palindrome partitioning of s 
 
+
+문제 풀이 방식
+1. isPalindrome: palindrome을 체크하는 fun 
+2. partitionHelper: 
+
+
 ''' 
 
 from typing import List 
