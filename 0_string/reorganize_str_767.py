@@ -1,3 +1,18 @@
+'''
+input: string s
+goal: rearrange the characters of s so that any two adjacent characters are not the same 
+output: rearranged string 
+
+ex) 
+s = "aab" 
+output = "aba" 
+
+s = "aaab" 
+output = "" 
+
+'''
+
+
 import heapq
 import collections 
 

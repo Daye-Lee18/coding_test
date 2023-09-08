@@ -63,8 +63,8 @@ def max_palindrome(s:str) -> list:
             if palindrome(candidate_s):
                 temp.append(candidate_s) 
     
-    for _ in temp:
-        print(temp)
+    # for _ in temp:
+    #     print(temp)
 
     # find whether there are some substring or the same palindrome
     result = set(temp) 

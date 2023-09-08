@@ -1,64 +1,79 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <queue>
-#include <unordered_map> // python's dictionary 
+/*
 
+input: string s
+goal: rearrange the characters of s so that any two adjacent characters are not the same 
+output: rearranged string 
+
+ex) 
+s = "aab" 
+output = "aba" 
+
+s = "aaab" 
+output = "" 
+
+*/
+#include <iostream>
+#include <unordered_map> 
+#include <queue> // priority queue , push, pop & top, empty, size 
+#include <utility> //pair 
+#include <string> // string 
 using namespace std;
 
-class Solution{
-    public:
-        string reorganizeString(string s){
-            if (s.empty()) return "";
+class Solution {
+public:
+    string reorganizeString(string s) {
+        if (s.empty()) return "";
 
-            //Create a max heap using a custom comparator
-            // lamdba function in c++  
-            // 어떠한 variable에 간단한 function을 assign할때 주로 사용되는 듯. 
-            auto cmp = [](pair<int, char> &a, pair<int, char> &b){
-                return a.first < b.first;
-            };
-
-            //creates `maxHeap` priority queue instance that holds pairs of integers and charcters 
-            // the pairs are stored in a vector, and the priority queue uses the `cmp` custom comparator to maintin a max heap structure based on the frequency values in the pairs 
-            //decltype : declare type 
-            std::priority_queue<pair<int, char>, vector<pair<int, char>>, decltype(cmp)> maxHeap(cmp);
-
-            //Store the letter and frequency as pairs in the max heap 
-            unordered_map <char, int> freqCounter;
-
-            for (char c: s){
-                freqCounter[c]++;
-            }
-
-            for (auto & entry:freqCounter){
-                maxHeap.push({entry.second, entry.first});
-            }
-
-            std::string res = "";
-            auto pre=maxHeap.top();
-            maxHeap.pop();
-            res += pre.second;
-
-            while (!maxHeap.empty()){
-                auto curr = maxHeap.top();
-                maxHeap.pop();
-                res += curr.second;
-
-                pre.first += 1 ; // Incrementing since max heap was used 
-
-                // If frequency is not exhausted, push back to the heap 
-                if (pre.first > 0){
-                    maxHeap.push(pre);
-                }
-
-                pre = curr;
-            }
-            // (condition) ? value_a : value_b; 
-            // if the condition is true, return value_a otherwise return value_b
-            return (res.length() != s.length()) ? "" : res;
-
+        // Counter 
+        unordered_map<char, int> cnt;
+        
+        for (char c : s){
+            cnt[c]++;
         }
+
+        // max-heap comparator  
+        //어떠한 variable에 간단한 function을 assign할 때 주로 사용됨 
+        auto cmp = [](pair<char, int> &a, pair<char, int> & b){
+            return a.second < b.second; // dictionary의 key를 비교 
+        }; // lambda fucntion 뒤에는 ; 를 써야한다!!!
+
+        //decltype : declare type 
+        std:priority_queue<pair<char, int>, vector<pair<char, int>>, decltype(cmp)> maxHeap(cmp);
+        
+        for (auto & entry: cnt){
+            maxHeap.push({entry.first, entry.second}); // pair는 make_pair(1, 'a') 아니면 {1, 'a'}로 initialization할 수 있다. 
+        }
+
+        // make result 
+        string res("");
+        pair<char, int> pre = maxHeap.top();
+        maxHeap.pop();
+        res += pre.first;
+       
+
+        while (!maxHeap.empty()){
+            pair<char, int> cur = maxHeap.top();
+            maxHeap.pop();
+            res += cur.first;
+
+            pre.second -= 1;
+            // If frequency is not exhausted, push back to the heap 
+            if (pre.second > 0){
+                maxHeap.push(pre);
+            }
+
+            pre = cur; 
+        }
+
+        // (condition) ? value_a : value_b; 
+        // if the condition is true, return value_a otherwise return value_b
+        return (res.length() != s.length()) ? "" : res;
+
+
+
+    }
 };
+
 
 int main() {
     Solution sol;

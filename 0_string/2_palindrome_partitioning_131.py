@@ -11,8 +11,13 @@ return: all possible palindrome partitioning of s
 
 문제 풀이 방식
 1. isPalindrome: palindrome을 체크하는 fun 
-2. partitionHelper: 
+2. partitionHelper: backtracking을 위한 recursion, input-based 
+    - 하나의 index를 기준으로 i를 len(s) 까지 움직이면서 
 
+ex) 
+
+s = "aab" 
+Output: [["a","a","b"],["aa","b"]]
 
 ''' 
 
@@ -28,10 +33,10 @@ class Solution:
             if index == len(s):
                 res.append(path[:])
                 return 
-            for i in range(index, len(s)):
+            for i in range(index, len(s)): 
                 if isPalindrome(s, index, i):
-                    path.append(s[index:i+1]) # a
-                    partitionHelper(i+1)
+                    path.append(s[index:i+1]) 
+                    partitionHelper(i+1) # i = 0 'a' 'a' 'b' backtracking , i = 1  
                     path.pop() # pop every path that are in path list whenever the function in the stack is removed 
             
         
