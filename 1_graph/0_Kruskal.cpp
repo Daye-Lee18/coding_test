@@ -13,7 +13,10 @@ MST(MSF) 를 찾는 방법
 
 // C++ program for Kruskal's algorithm to find Minimum
 // Spanning Tree of a given connected, undirected and weighted graph
-#include<bits/stdc++.h>
+#include <iostream> // cout
+#include <vector>
+#include <utility> //pair
+
 using namespace std;
 
 // Creating shortcut for an integer pair
