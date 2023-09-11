@@ -14,7 +14,7 @@ using namespace std;
 // increase_key(S, x, k) // increase the value of element x's key to the new value k, which is assumed to be at least as large as x's current key value 
 
 #include<iostream>
-#include<queue>
+#include<queue> // FIFO 
 #include<vector>
 
 class Mountain {
