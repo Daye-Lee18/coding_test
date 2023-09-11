@@ -1,7 +1,6 @@
 #include <vector>
 #include <queue>
 #include <climits>
-#include <math>
 
 using namespace std;
 

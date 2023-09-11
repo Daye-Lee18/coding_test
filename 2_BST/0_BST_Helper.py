@@ -1,5 +1,12 @@
 from collections import deque
 
+# Helper functions: DO NOT MODIFY!!
+
+# Definition for Node of singly linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 # TreeNode class (printTree function)
 # create_linked_bst function 
